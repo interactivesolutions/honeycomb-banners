@@ -1,0 +1,21 @@
+{
+    "general":
+    {
+        "serviceProviderNameSpace": "HCBanners"
+    },
+    "formData":
+    [
+    ],
+    "adminMenu":
+    [
+    ],
+    "acl":
+    {
+        "permissions" :
+        [
+        ],
+        "rolesActions" :
+        [
+        ]
+    }
+}
