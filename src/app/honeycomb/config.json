@@ -3,7 +3,8 @@
         "serviceProviderNameSpace": "HCBanners"
     },
     "formData": {
-        "banners-types": "interactivesolutions\\honeycombbanners\\app\\forms\\banners\\HCBannerTypesForm"
+        "banners-types": "interactivesolutions\\honeycombbanners\\app\\forms\\banners\\HCBannerTypesForm",
+        "banners": "interactivesolutions\\honeycombbanners\\app\\forms\\HCBannersForm"
     },
     "adminMenu": [
         {
@@ -11,6 +12,14 @@
             "translation": "HCBanners::banners_types.page_title",
             "icon": "fa-circle-o",
             "aclPermission": "interactivesolutions_honeycomb_banners_routes_banners_types_list",
+            "priority": 10,
+            "parent": "admin.routes.banners.index"
+        },
+        {
+            "route": "admin.routes.banners.index",
+            "translation": "HCBanners::banners.page_title",
+            "icon": "fa-circle-o",
+            "aclPermission": "interactivesolutions_honeycomb_banners_routes_banners_list",
             "priority": 10
         }
     ],
@@ -26,6 +35,17 @@
                     "interactivesolutions_honeycomb_banners_routes_banners_types_delete",
                     "interactivesolutions_honeycomb_banners_routes_banners_types_force_delete"
                 ]
+            },
+            {
+                "name": "admin.routes.banners",
+                "controller": "interactivesolutions\\honeycombbanners\\app\\http\\controllers\\HCBannersController",
+                "actions": [
+                    "interactivesolutions_honeycomb_banners_routes_banners_list",
+                    "interactivesolutions_honeycomb_banners_routes_banners_create",
+                    "interactivesolutions_honeycomb_banners_routes_banners_update",
+                    "interactivesolutions_honeycomb_banners_routes_banners_delete",
+                    "interactivesolutions_honeycomb_banners_routes_banners_force_delete"
+                ]
             }
         ],
         "rolesActions": {
@@ -33,7 +53,11 @@
                 "interactivesolutions_honeycomb_banners_routes_banners_types_list",
                 "interactivesolutions_honeycomb_banners_routes_banners_types_create",
                 "interactivesolutions_honeycomb_banners_routes_banners_types_update",
-                "interactivesolutions_honeycomb_banners_routes_banners_types_delete"
+                "interactivesolutions_honeycomb_banners_routes_banners_types_delete",
+                "interactivesolutions_honeycomb_banners_routes_banners_list",
+                "interactivesolutions_honeycomb_banners_routes_banners_create",
+                "interactivesolutions_honeycomb_banners_routes_banners_update",
+                "interactivesolutions_honeycomb_banners_routes_banners_delete"
             ]
         }
     }
