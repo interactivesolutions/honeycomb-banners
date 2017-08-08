@@ -126,6 +126,56 @@ class BannersHelper
     }
 
     /**
+     * Format banner type
+     *
+     * @param $item
+     * @return mixed
+     */
+    protected function _formatBannerType($item)
+    {
+        $banners = $this->_formatBanners($item->banners);
+
+        array_forget($item, 'banners');
+
+        $item['banners'] = $banners;
+
+        return $item;
+    }
+
+    /**
+     * Format banners
+     *
+     * @param $banners
+     * @return array
+     */
+    protected function _formatBanners($banners)
+    {
+        return $banners->map(function ($banner, $key) {
+            return $this->_formatBanner($banner);
+        });
+    }
+
+    /**
+     * Format final banner data
+     *
+     * @param $banner
+     * @return array
+     */
+    protected function _formatBanner($banner)
+    {
+        if( ! $banner ) {
+            return [];
+        }
+
+        return [
+            'banner_id' => $banner->id,
+            'link_url'  => $banner->short_url ? $banner->short_url->short_url_link : null,
+            'target'    => $banner->link_type,
+            'html'      => $this->iFrameTpl(route('ads.banner.show', $banner->id), $banner->banner_type->width, $banner->banner_type->height),
+        ];
+    }
+
+    /**
      * @param $item
      * @return string
      */
@@ -143,56 +193,6 @@ class BannersHelper
             );
         }
 
-        return $html;
-    }
-
-    /**
-     * Format banner type
-     *
-     * @param $item
-     * @return mixed
-     */
-    private function _formatBannerType($item)
-    {
-        $banners = $this->_formatBanners($item->banners);
-
-        array_forget($item, 'banners');
-
-        $item['banners'] = $banners;
-
-        return $item;
-    }
-
-    /**
-     * Format banners
-     *
-     * @param $banners
-     * @return array
-     */
-    private function _formatBanners($banners)
-    {
-        return $banners->map(function ($banner, $key) {
-            return $this->_formatBanner($banner);
-        });
-    }
-
-    /**
-     * Format banner
-     *
-     * @param $banner
-     * @return array
-     */
-    private function _formatBanner($banner)
-    {
-        if( ! $banner ) {
-            return [];
-        }
-
-        return [
-            'banner_id' => $banner->id,
-            'link_url'  => $banner->short_url ? $banner->short_url->short_url_link : null,
-            'target'    => $banner->link_type,
-            'html'      => $this->getBannerHtml($banner),
-        ];
+       return $html;
     }
 }
