@@ -2,6 +2,7 @@
 
 namespace interactivesolutions\honeycombbanners\app\models\banners;
 
+use interactivesolutions\honeycombbanners\app\models\HCBanners;
 use interactivesolutions\honeycombcore\models\HCUuidModel;
 
 class HCBannerTypes extends HCUuidModel
@@ -19,4 +20,14 @@ class HCBannerTypes extends HCUuidModel
      * @var array
      */
     protected $fillable = ['id', 'name', 'width', 'height'];
+
+    /**
+     * Relation to banners
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function banners()
+    {
+        return $this->hasMany(HCBanners::class, 'banner_type_id', 'id');
+    }
 }

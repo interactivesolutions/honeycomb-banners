@@ -22,15 +22,7 @@ class HCBannerShowController extends HCBaseController
         $html = '';
 
         if( $item ) {
-            if( $item->type == 'image' ) {
-                $html = $helper->imageTpl(
-                    route('resource.get', $item->resource_id), $item->banner_type->width, $item->banner_type->height
-                );
-            } else if( $item->type == 'zip' ) {
-                $html = $helper->iFrameTpl(
-                    $helper->getIFrameLink($item), $item->banner_type->width, $item->banner_type->height
-                );
-            }
+            $html = $helper->getBannerHtml($item);
 
             $item->increment('shows');
         }
