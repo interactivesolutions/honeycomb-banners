@@ -10,6 +10,8 @@ return [
     'link_type'      => 'Link type',
     'hash'           => 'Hash',
     'type'           => 'Type',
+    'shows'          => 'Shows',
+    'clicks'         => 'Clicks',
 
     'errors' => [
         'no_html_file'     => 'Html file not found!',

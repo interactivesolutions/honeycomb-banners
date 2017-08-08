@@ -18,5 +18,5 @@ class HCBannerTypes extends HCUuidModel
      *
      * @var array
      */
-    protected $fillable = ['id', 'name', 'width', 'height', 'allow_html'];
+    protected $fillable = ['id', 'name', 'width', 'height'];
 }

@@ -65,10 +65,6 @@ class HCBannerTypesController extends HCBaseController
                 "type"  => "text",
                 "label" => trans('HCBanners::banners_types.height'),
             ],
-            'allow_html' => [
-                "type"  => "text",
-                "label" => trans('HCBanners::banners_types.allow_html'),
-            ],
         ];
     }
 
@@ -219,7 +215,6 @@ class HCBannerTypesController extends HCBaseController
         array_set($data, 'record.name', array_get($_data, 'name'));
         array_set($data, 'record.width', array_get($_data, 'width'));
         array_set($data, 'record.height', array_get($_data, 'height'));
-        array_set($data, 'record.allow_html', request()->has('allow_html') ? "1" : "0");
 
         return $data;
     }

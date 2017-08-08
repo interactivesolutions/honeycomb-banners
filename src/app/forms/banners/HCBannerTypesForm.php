@@ -49,7 +49,6 @@ class HCBannerTypesForm
                     "required"        => 1,
                     "requiredVisible" => 1,
                 ],
-                formManagerCheckBox('allow_html', trans("HCBanners::banners_types.allow_html")),
             ],
         ];
 

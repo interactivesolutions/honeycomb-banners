@@ -22,7 +22,6 @@ class CreateHcBannersTypesTable extends Migration
             $table->string('name', 255);
             $table->integer('width');
             $table->integer('height');
-            $table->enum('allow_html', ['0', '1']);
         });
     }
 

@@ -4,6 +4,4 @@ return [
     'name'       => 'Name',
     'width'      => 'Width',
     'height'     => 'Height',
-    'allow_html' => 'Allow html',
-
 ];

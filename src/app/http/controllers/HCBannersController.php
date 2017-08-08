@@ -54,31 +54,38 @@ class HCBannersController extends HCBaseController
     public function getAdminListHeader()
     {
         return [
-            'banner_type_id' => [
+            'resource_id'      => [
+                "type"  => "image",
+                "label" => trans('HCBanners::banners.resource_id'),
+            ],
+            'banner_type.name' => [
                 "type"  => "text",
                 "label" => trans('HCBanners::banners.banner_type_id'),
             ],
-            'resource_id'    => [
-                "type"  => "text",
-                "label" => trans('HCBanners::banners.resource_id'),
-            ],
-            'name'           => [
+            'name'             => [
                 "type"  => "text",
                 "label" => trans('HCBanners::banners.name'),
             ],
-            'banner_url'     => [
+            'banner_url'       => [
                 "type"  => "text",
                 "label" => trans('HCBanners::banners.banner_url'),
             ],
-            'start_at'       => [
+            'start_at'         => [
                 "type"  => "text",
                 "label" => trans('HCBanners::banners.start_at'),
             ],
-            'end_at'         => [
+            'end_at'           => [
                 "type"  => "text",
                 "label" => trans('HCBanners::banners.end_at'),
             ],
-
+            'short_url.clicks' => [
+                "type"  => "text",
+                "label" => trans('HCBanners::banners.clicks'),
+            ],
+            'shows'            => [
+                "type"  => "text",
+                "label" => trans('HCBanners::banners.shows'),
+            ],
         ];
     }
 
@@ -179,7 +186,7 @@ class HCBannersController extends HCBaseController
      */
     protected function createQuery(array $select = null)
     {
-        $with = [];
+        $with = ['short_url', 'banner_type'];
 
         if( $select == null )
             $select = HCBanners::getFillableFields();
