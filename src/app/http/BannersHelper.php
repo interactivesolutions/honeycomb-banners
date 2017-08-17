@@ -201,7 +201,7 @@ class BannersHelper
             'type'           => $banner->type,
             'link_url'       => $banner->short_url ? $banner->short_url->short_url_link : null,
             'target'         => $banner->link_type,
-            'link_name'      => $banner->link_name,
+            'link_title'     => $banner->link_title,
             'html'           => $this->iFrameTpl(route('ads.banner.show', $banner->id), $banner->banner_type->width, $banner->banner_type->height),
             'start_at'       => $banner->start_at,
             'end_at'         => $banner->end_at,
