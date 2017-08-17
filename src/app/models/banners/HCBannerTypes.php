@@ -19,7 +19,7 @@ class HCBannerTypes extends HCUuidModel
      *
      * @var array
      */
-    protected $fillable = ['id', 'name', 'width', 'height'];
+    protected $fillable = ['id', 'name', 'width', 'height', 'active'];
 
     /**
      * Relation to banners
@@ -29,5 +29,16 @@ class HCBannerTypes extends HCUuidModel
     public function banners()
     {
         return $this->hasMany(HCBanners::class, 'banner_type_id', 'id');
+    }
+
+    /**
+     * Active banners query scope
+     *
+     * @param $query
+     * @return mixed
+     */
+    public function scopeIsActive($query)
+    {
+        return $query->where('active', '1');
     }
 }

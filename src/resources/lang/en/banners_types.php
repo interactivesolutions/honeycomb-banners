@@ -5,4 +5,5 @@ return [
     'name'       => 'Name',
     'width'      => 'Width',
     'height'     => 'Height',
+    'active'     => 'Active',
 ];

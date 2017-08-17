@@ -28,6 +28,7 @@ class HCBannerTypesForm
                 ],
             ],
             'structure'  => [
+                formManagerCheckBox('active', trans("HCBanners::banners_types.active"), 0, 0),
                 [
                     "type"            => "singleLine",
                     "fieldID"         => "name",
