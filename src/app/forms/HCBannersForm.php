@@ -112,13 +112,6 @@ class HCBannersForm
                         "format" => "YYYY-MM-DD HH:mm:ss",
                     ],
                 ],
-                [
-                    "type"            => "singleLine",
-                    "fieldID"         => "sequence",
-                    "label"           => trans("HCBanners::banners.sequence"),
-                    "required"        => 0,
-                    "requiredVisible" => 0,
-                ],
             ],
         ];
 
@@ -142,8 +135,17 @@ class HCBannersForm
             'readonly' => 1,
         ];
 
+        $sequence =  [
+            "type"            => "singleLine",
+            "fieldID"         => "sequence",
+            "label"           => trans("HCBanners::banners.sequence"),
+            "required"        => 0,
+            "requiredVisible" => 0,
+        ];
+
         $form['structure'][] = $hash;
         $form['structure'][] = $type;
+        $form['structure'][] = $sequence;
 
         $form = $this->makeNotEditableFields($form, ['resource']);
 

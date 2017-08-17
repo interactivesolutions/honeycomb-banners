@@ -16,6 +16,7 @@ class HCBannersValidator extends HCCoreFormValidator
             'name'        => 'required',
             'banner_url'  => 'required',
             'start_at'    => 'required',
+            'sequence'    => 'integer',
         ];
     }
 }
