@@ -2,6 +2,7 @@
 
 namespace interactivesolutions\honeycombbanners\app\models;
 
+use Carbon\Carbon;
 use interactivesolutions\honeycombbanners\app\models\banners\HCBannerTypes;
 use interactivesolutions\honeycombcore\models\HCUuidModel;
 use interactivesolutions\honeycombresources\app\models\HCResources;
@@ -21,7 +22,7 @@ class HCBanners extends HCUuidModel
      *
      * @var array
      */
-    protected $fillable = ['id', 'banner_type_id', 'resource_id', 'name', 'banner_url', 'start_at', 'end_at', 'short_url_id', 'link_type', 'type', 'shows'];
+    protected $fillable = ['id', 'banner_type_id', 'resource_id', 'name', 'banner_url', 'start_at', 'end_at', 'short_url_id', 'link_type', 'link_title', 'type', 'shows', 'sequence'];
 
     /**
      * Relation to type

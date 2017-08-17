@@ -8,10 +8,12 @@ return [
     'start_at'       => 'Start at',
     'end_at'         => 'End at',
     'link_type'      => 'Link type',
+    'link_title'     => 'Link title',
     'hash'           => 'Hash',
     'type'           => 'Type',
     'shows'          => 'Shows',
     'clicks'         => 'Clicks',
+    'sequence'       => 'Sequence',
 
     'errors' => [
         'no_html_file'     => 'Html file not found!',

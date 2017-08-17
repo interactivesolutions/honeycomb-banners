@@ -248,7 +248,9 @@ class HCBannersController extends HCBaseController
         array_set($data, 'record.start_at', array_get($_data, 'start_at'));
         array_set($data, 'record.end_at', array_get($_data, 'end_at'));
         array_set($data, 'record.link_type', array_get($_data, 'link_type'));
+        array_set($data, 'record.link_title', array_get($_data, 'link_title'));
         array_set($data, 'record.short_url_id', array_get($_data, 'short_url_id'));
+        array_set($data, 'record.sequence', array_get($_data, 'sequence'));
         array_set($data, 'record.shows', array_get($_data, 'shows', 0));
 
         if( array_get($data, 'record.end_at') == "" ) {

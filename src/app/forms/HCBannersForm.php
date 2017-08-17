@@ -69,6 +69,13 @@ class HCBannersForm
                     "requiredVisible" => 1,
                 ],
                 [
+                    "type"            => "singleLine",
+                    "fieldID"         => "link_title",
+                    "label"           => trans("HCBanners::banners.link_title"),
+                    "required"        => 0,
+                    "requiredVisible" => 0,
+                ],
+                [
                     'type'            => 'radioList',
                     'fieldID'         => 'link_type',
                     'label'           => trans('HCBanners::banners.link_type'),
@@ -104,6 +111,13 @@ class HCBannersForm
                     "properties"      => [
                         "format" => "YYYY-MM-DD HH:mm:ss",
                     ],
+                ],
+                [
+                    "type"            => "singleLine",
+                    "fieldID"         => "sequence",
+                    "label"           => trans("HCBanners::banners.sequence"),
+                    "required"        => 0,
+                    "requiredVisible" => 0,
                 ],
             ],
         ];

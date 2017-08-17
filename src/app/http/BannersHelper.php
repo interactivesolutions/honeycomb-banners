@@ -15,6 +15,13 @@ class BannersHelper
     protected $shuffled;
 
     /**
+     * Order by position banners
+     *
+     * @var
+     */
+    protected $sequenced;
+
+    /**
      * Get banner information by position
      *
      * @return array
@@ -29,9 +36,12 @@ class BannersHelper
 
                 if( $this->shuffled ) {
                     $query->inRandomOrder();
+                } else if( $this->sequenced ) {
+                    $query->orderBy('sequence');
                 }
             }])
             ->has('banners')
+            ->isActive()
             ->get()
             ->map(function ($item, $key) {
                 return $this->_formatBannerType($item);
@@ -49,11 +59,16 @@ class BannersHelper
     public function getBannersByTypeId($typeId)
     {
         $banners = HCBanners::whereHas('banner_type', function ($query) use ($typeId) {
-            $query->where('id', $typeId);
-        });
+            $query->where('id', $typeId)
+                ->isActive();
+        })->isActiveTime();
 
         if( $this->shuffled ) {
             $banners->inRandomOrder();
+        }
+
+        if( $this->sequenced ) {
+            $banners->orderBy('sequence');
         }
 
         $banners = $banners->get();
@@ -69,7 +84,7 @@ class BannersHelper
      */
     public function getBanner($id)
     {
-        $banner = HCBanners::has('banner_type')->find($id);
+        $banner = HCBanners::has('banner_type')->isActiveTime()->find($id);
 
         return $this->_formatBanner($banner);
     }
@@ -82,6 +97,18 @@ class BannersHelper
     public function shuffled()
     {
         $this->shuffled = true;
+
+        return $this;
+    }
+
+    /**
+     * Order by position
+     *
+     * @return mixed
+     */
+    public function sequenced()
+    {
+        $this->sequenced = true;
 
         return $this;
     }
@@ -168,10 +195,17 @@ class BannersHelper
         }
 
         return [
-            'banner_id' => $banner->id,
-            'link_url'  => $banner->short_url ? $banner->short_url->short_url_link : null,
-            'target'    => $banner->link_type,
-            'html'      => $this->iFrameTpl(route('ads.banner.show', $banner->id), $banner->banner_type->width, $banner->banner_type->height),
+            'name'           => $banner->name,
+            'banner_id'      => $banner->id,
+            'banner_type_id' => $banner->banner_type_id,
+            'type'           => $banner->type,
+            'link_url'       => $banner->short_url ? $banner->short_url->short_url_link : null,
+            'target'         => $banner->link_type,
+            'link_name'      => $banner->link_name,
+            'html'           => $this->iFrameTpl(route('ads.banner.show', $banner->id), $banner->banner_type->width, $banner->banner_type->height),
+            'start_at'       => $banner->start_at,
+            'end_at'         => $banner->end_at,
+            'sequence'       => $banner->sequence,
         ];
     }
 
@@ -193,6 +227,6 @@ class BannersHelper
             );
         }
 
-       return $html;
+        return $html;
     }
 }
