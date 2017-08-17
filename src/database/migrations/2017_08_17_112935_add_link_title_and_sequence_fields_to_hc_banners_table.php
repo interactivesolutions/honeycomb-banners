@@ -15,7 +15,7 @@ class AddLinkTitleAndSequenceFieldsToHcBannersTable extends Migration
     {
         Schema::table('hc_banners', function (Blueprint $table) {
             $table->string('link_title', '255')->nullable();
-            $table->integer('sequence')->defaul('0');
+            $table->integer('sequence')->nullable()->default('0');
         });
     }
 
