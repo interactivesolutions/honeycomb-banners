@@ -257,7 +257,7 @@ class HCBannersController extends HCBaseController
             array_set($data, 'record.end_at', null);
         }
 
-        return $data;
+        return makeEmptyNullable($data, true);
     }
 
     /**
