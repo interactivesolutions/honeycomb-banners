@@ -234,7 +234,7 @@ class BannersHelper
 
     /**
      * Get banner image url by banner type
-     * 
+     *
      * @param $item
      * @return \Illuminate\Contracts\Routing\UrlGenerator|string
      */

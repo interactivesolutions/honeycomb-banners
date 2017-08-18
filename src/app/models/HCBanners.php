@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use interactivesolutions\honeycombbanners\app\models\banners\HCBannerTypes;
 use interactivesolutions\honeycombcore\models\HCUuidModel;
 use interactivesolutions\honeycombresources\app\models\HCResources;
+use interactivesolutions\honeycombresources\app\models\resources\HCThumbs;
 use interactivesolutions\honeycomburlshortener\app\models\HCShortURL;
 
 class HCBanners extends HCUuidModel
@@ -93,6 +94,9 @@ class HCBanners extends HCUuidModel
                 $this->save();
 
             } elseif( $resource->extension == '.png' || $resource->extension == '.jpeg' || $resource->extension == '.jpg' ) {
+
+                \Artisan::call('hc:generate-thumb', ['id' => $resourceId, 'rule' => $this->banner_type_id]);
+
                 // save data
                 $this->type = 'image';
                 $this->save();

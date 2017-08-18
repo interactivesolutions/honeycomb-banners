@@ -100,6 +100,8 @@ class HCBannersController extends HCBaseController
 
         $data = $this->getShortUrlId($data);
 
+        array_set($data, 'record.shows', 0);
+
         $record = HCBanners::create(array_get($data, 'record'));
         $record->handleBanner(array_get($data, 'record.resource_id'));
 
