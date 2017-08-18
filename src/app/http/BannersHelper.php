@@ -4,6 +4,7 @@ namespace interactivesolutions\honeycombbanners\app\http;
 
 use interactivesolutions\honeycombbanners\app\models\banners\HCBannerTypes;
 use interactivesolutions\honeycombbanners\app\models\HCBanners;
+use interactivesolutions\honeycombresources\app\models\resources\HCThumbs;
 
 class BannersHelper
 {
@@ -218,8 +219,9 @@ class BannersHelper
         $html = '';
 
         if( $item->type == 'image' ) {
+
             $html = $this->imageTpl(
-                route('resource.get', $item->resource_id), $item->banner_type->width, $item->banner_type->height
+                $this->getImageUrl($item), $item->banner_type->width, $item->banner_type->height
             );
         } else if( $item->type == 'zip' ) {
             $html = $this->iFrameTpl(
@@ -228,5 +230,24 @@ class BannersHelper
         }
 
         return $html;
+    }
+
+    /**
+     * Get banner image url by banner type
+     * 
+     * @param $item
+     * @return \Illuminate\Contracts\Routing\UrlGenerator|string
+     */
+    public function getImageUrl($item)
+    {
+        $thumb = HCThumbs::find($item->banner_type_id);
+
+        if( is_null($thumb) ) {
+            $url = route('resource.get', $item->resource_id);
+        } else {
+            $url = getThumbUrl($item->resource_id, $thumb);
+        }
+
+        return $url;
     }
 }

@@ -135,6 +135,6 @@ Route::group(['prefix' => 'api', 'middleware' => ['auth-apps']], function ()
 //src/app/routes//public/01_routes.banner.shows.php
 
 
-Route::group(['prefix' => 'ads/banner'], function () {
+Route::group(['prefix' => config('hc.banner_prefix')], function () {
     Route::get('{id}', ['as' => 'ads.banner.show', 'uses' => 'banners\HCBannerShowController@show',]);
 });
