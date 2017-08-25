@@ -124,7 +124,7 @@ class BannersHelper
      */
     public function imageTpl($src, $width, $height)
     {
-        return "<div style='width: {$width}px; height: {$height}px; background: url($src); background-size: contain;background-repeat: no-repeat; max-width: 100%;'></div>";
+        return "<div style='width: {$width}px; height: {$height}px; background: url($src); background-size: contain;background-repeat: no-repeat; max-width: 100%;image-rendering: -webkit-optimize-contrast;'></div>";
 
         /* @old */
 //        return sprintf("<img src='%s' width='%s' height='%s'>", $src, $width, $height);
