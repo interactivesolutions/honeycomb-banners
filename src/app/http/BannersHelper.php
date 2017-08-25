@@ -59,10 +59,11 @@ class BannersHelper
      */
     public function getBannersByTypeId($typeId)
     {
-        $banners = HCBanners::whereHas('banner_type', function ($query) use ($typeId) {
-            $query->where('id', $typeId)
-                ->isActive();
-        })->isActiveTime();
+        $banners = HCBanners::with('banner_type', 'short_url')
+            ->whereHas('banner_type', function ($query) use ($typeId) {
+                $query->where('id', $typeId)
+                    ->isActive();
+            })->isActiveTime();
 
         if( $this->shuffled ) {
             $banners->inRandomOrder();
@@ -85,7 +86,7 @@ class BannersHelper
      */
     public function getBanner($id)
     {
-        $banner = HCBanners::has('banner_type')->isActiveTime()->find($id);
+        $banner = HCBanners::with('banner_type', 'short_url')->has('banner_type')->isActiveTime()->find($id);
 
         return $this->_formatBanner($banner);
     }

@@ -125,6 +125,8 @@ class HCBannersController extends HCBaseController
         $record->update(array_get($data, 'record', []));
         $record->handleBanner(array_get($data, 'record.resource_id'));
 
+        cache()->forget('banner_show_' . $id);
+
         return $this->apiShow($record->id);
     }
 
@@ -150,6 +152,10 @@ class HCBannersController extends HCBaseController
     protected function __apiDestroy(array $list)
     {
         HCBanners::destroy($list);
+
+        foreach ( $list as $id ) {
+            cache()->forget('banner_show_' . $id);
+        }
 
         return hcSuccess();
     }
